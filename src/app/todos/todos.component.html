@@ -1,0 +1,29 @@
+
+<div *ngIf="appState == 'default'">
+  <h3>
+    Add Todo
+  </h3>
+  <form (submit)="addTodo()">
+    <md-input-container>
+      <input name="addInput" mdInput placeholder="Add Todo" [(ngModel)]="text">
+    </md-input-container>   
+  </form>
+</div>
+<div *ngIf="appState == 'edit'">
+  <h3>
+    Edit Todo
+  </h3>
+  <form (submit)="updateTodo()">
+    <md-input-container>
+      <input name="editInput" mdInput placeholder="Edit Todo" [(ngModel)]="text">
+    </md-input-container> 
+  </form>
+</div>
+<h3>
+  Todo List
+</h3>
+<md-list>
+  <md-list-item *ngFor="let todo of todos">
+    <span (click)="editTodo(todo)">{{todo.text}}</span> <button md-button (click)="deleteTodo(todo.text)">X</button>
+  </md-list-item>
+</md-list>
