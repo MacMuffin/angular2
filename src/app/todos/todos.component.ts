@@ -20,44 +20,48 @@ export class TodosComponent implements OnInit {
   }
 
   addTodo(){
-    var newTodo = {
+    const newTodo = {
       text: this.text
     }
     this.todos.push(newTodo);
     this._todoService.addTodo(newTodo);
-    this.text = "";
-    this.snackBar.open("Todo has been added: " + newTodo.text, null, {
+    this.text = '';
+    this.snackBar.open('Todo has been added: ' + newTodo.text, null, {
       duration: 2000,
-    })
+    });
   }
 
   deleteTodo(todoText){
-    for(var i = 0; i < this.todos.length;i++){
-      if(todoText == this.todos[i].text){
+    for (let i = 0; i < this.todos.length; i++) {
+      if (todoText === this.todos[i].text) {
         this.todos.splice(i, 1);
       }
     }
 
     this._todoService.deleteTodo(todoText);
+    this.snackBar.open('Following Todo has been deleted: ' + todoText, null, {
+      duration: 2000,
+    });
   }
 
   editTodo(todo){
-    this.appState = "edit";
+    this.appState = 'edit';
     this.oldText = todo.text;
-    console.log('Current AppState', this.appState);
     this.text = todo.text;
   }
 
   updateTodo(){
-    console.log(this.text);
-    for(var i = 0; i < this.todos.length;i++){
-      if(this.oldText == this.todos[i].text){
+    for (let i = 0; i < this.todos.length; i++){
+      if (this.oldText === this.todos[i].text){
         this.todos[i].text = this.text;
       }
     }
 
     this._todoService.updateTodo(this.oldText, this.text);
-    this.appState = "default";
-    this.text = "";
+    this.appState = 'default';
+    this.snackBar.open('Following Text: ' + this.oldText + ' has been updated to: ' + this.text, null, {
+      duration: 2000,
+    });
+    this.text = '';
   }
 }
