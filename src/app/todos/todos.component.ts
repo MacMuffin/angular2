@@ -19,7 +19,7 @@ export class TodosComponent implements OnInit {
     this.todos = this._todoService.getTodos();
   }
 
-  addTodo(){
+  addTodo() {
     const newTodo = {
       text: this.text
     }
@@ -31,7 +31,7 @@ export class TodosComponent implements OnInit {
     });
   }
 
-  deleteTodo(todoText){
+  deleteTodo(todoText) {
     for (let i = 0; i < this.todos.length; i++) {
       if (todoText === this.todos[i].text) {
         this.todos.splice(i, 1);
@@ -44,13 +44,13 @@ export class TodosComponent implements OnInit {
     });
   }
 
-  editTodo(todo){
+  editTodo(todo) {
     this.appState = 'edit';
     this.oldText = todo.text;
     this.text = todo.text;
   }
 
-  updateTodo(){
+  updateTodo() {
     for (let i = 0; i < this.todos.length; i++){
       if (this.oldText === this.todos[i].text){
         this.todos[i].text = this.text;
