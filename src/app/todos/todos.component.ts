@@ -22,7 +22,7 @@ export class TodosComponent implements OnInit {
   addTodo() {
     const newTodo = {
       text: this.text
-    }
+    };
     this.todos.push(newTodo);
     this._todoService.addTodo(newTodo);
     this.text = '';
@@ -51,8 +51,8 @@ export class TodosComponent implements OnInit {
   }
 
   updateTodo() {
-    for (let i = 0; i < this.todos.length; i++){
-      if (this.oldText === this.todos[i].text){
+    for (let i = 0; i < this.todos.length; i++) {
+      if (this.oldText === this.todos[i].text) {
         this.todos[i].text = this.text;
       }
     }
